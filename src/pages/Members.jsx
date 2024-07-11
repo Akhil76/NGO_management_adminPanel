@@ -9,10 +9,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Typography } from "@mui/material";
+import { useGetMembersQuery } from '../reduxStore/member/memberApi';
 
 function Members() {
   var [data, setData] = useState([]);
-
+  const res = useGetMembersQuery();
+  
   useEffect(() => {
     fetch(`http://localhost:5000/allmembers`)
             .then(res => res.json())
@@ -20,7 +22,7 @@ function Members() {
             //.then(res => console.log(res))
             .catch(err => console.log(err))
   },[data]);
-  console.log(data)
+  console.log(res)
   //-----------------------------------For Table------------------------
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -77,4 +79,4 @@ function Members() {
   )
 }
 
-export default Members
+export default Members;

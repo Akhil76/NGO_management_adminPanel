@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    member:null,
+    member:[],
     error:null,
-    loading:false
+    loading:true
 }
 
 
@@ -13,8 +13,13 @@ const memberSlice = createSlice({
     name:'member',
     initialState,
     reducers:{
-        allmembers:(state,action)=>{
+        allmembers(state,action){
             state.members = action.payload;
+            state.loading = false;
+            state.error = null;
         }
     }
 })
+
+
+export default memberSlice.reducer;
